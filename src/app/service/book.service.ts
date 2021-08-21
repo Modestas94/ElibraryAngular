@@ -15,18 +15,22 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
 public getBooks(): Observable<Book[]> {
-  return this.http.get<Book[]>(`${this.apiServerUrl}/book/all`);
+  return this.http.get<Book[]>(`${this.apiServerUrl}/all`);
 }
 
 public addBook(book: Book): Observable<Book> {
-  return this.http.post<Book>(`${this.apiServerUrl}/book/add`, book);
+  return this.http.post<Book>(`${this.apiServerUrl}/add`, book);
 }
 
 public updateBook(book: Book): Observable<Book> {
-  return this.http.put<Book>(`${this.apiServerUrl}/book/update`, book);
+  return this.http.put<Book>(`${this.apiServerUrl}/update`, book);
 }
 
 public deleteBook(bookId: number): Observable<void> {
-  return this.http.delete<void>(`${this.apiServerUrl}/book/delete/${bookId}`)
+  return this.http.delete<void>(`${this.apiServerUrl}/delete/${bookId}`)
+}
+
+public getBookByCategoryName(category: String): Observable<Book[]> {
+  return this.http.get<Book[]>(`${this.apiServerUrl}/get/${category}`);
 }
 }

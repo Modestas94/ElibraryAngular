@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NonFictionComponent } from './non-fiction.component';
+import { HeaderComponent } from './header.component';
 
-describe('NonFictionComponent', () => {
-  let component: NonFictionComponent;
-  let fixture: ComponentFixture<NonFictionComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NonFictionComponent ]
+      declarations: [ HeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NonFictionComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

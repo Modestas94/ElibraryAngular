@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { FictionComponent } from './fiction/fiction.component';
-import { NonFictionComponent } from './non-fiction/non-fiction.component';
 import { BookService } from './service/book.service';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FooterComponent } from './footer/footer.component';
+import { BooksModule } from './book/books.module';
+import { BooksComponent } from './book/books.component';
 
 
 @NgModule({
@@ -16,19 +19,20 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    FictionComponent,
-    NonFictionComponent
+    HeaderComponent,
+    FooterComponent,
+    
   ],
   imports: [
     BrowserModule,
+    BooksModule,
     AppRoutingModule,
     HttpClientModule,
+    MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'home', component: HomeComponent},
       {path: 'about', component: AboutComponent},
-      {path: 'fiction', component: FictionComponent},
-      {path: 'non-fiction', component: NonFictionComponent},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}]),
   ],
   providers: [BookService],
