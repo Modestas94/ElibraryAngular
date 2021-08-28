@@ -8,10 +8,13 @@ import { AboutComponent } from './about/about.component';
 import { BookService } from './service/book.service';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ModalModule } from 'angular-bootstrap-md';
 import { FooterComponent } from './footer/footer.component';
 import { BooksModule } from './book/books.module';
-import { BooksComponent } from './book/books.component';
+import { FormsModule } from '@angular/forms';
+import { AdminModule } from './admin/admin.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -21,19 +24,22 @@ import { BooksComponent } from './book/books.component';
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    
+
   ],
+  
   imports: [
+    FormsModule,
+    ModalModule,
+    AdminModule,
     BrowserModule,
     BooksModule,
     AppRoutingModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'home', component: HomeComponent},
-      {path: 'about', component: AboutComponent},
-      {path: '**', redirectTo: 'home', pathMatch: 'full'}]),
+    RouterModule.forRoot([]),
+    NgbModule,
+
+
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

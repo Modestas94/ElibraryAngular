@@ -21,17 +21,20 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
           <li class="nav-item">
-            <a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/drama']">Drama</a></li>
+            <a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/drama']">Drama</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/fantasy']">Fantasy</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/fantasy']">Fantasy</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/romane']">Romane</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/Romance']">Romance</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/psychological']">Psychological</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/psychological']">Psychological</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/detective']">Detective</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/detective']">Detective</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/biography']">Biography</a></li>
+              <!-- <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/category/biography']">Biography</a></li> -->
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" (click)="gotoCategoryPage($event, 'biography')">Biography</a></li>
+                  <li><hr class="dropdown-divider"></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" (click)="gotoCategoryPage($event, 'for children')">For children</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -39,17 +42,26 @@
               Non-Fiction books
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Food</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" (click)="gotoCategoryPage($event, 'food')">Food</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Travel</a></li>
+              <li><a class="nav-link active" a class = "dropdown-item" aria-current="page" (click)="gotoCategoryPage($event, 'travel')">Travel</a></li>
             </ul>
             <li class="nav-item">
-              <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/books']">All books</a>
+              <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/admin']">Admin</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            type="search"
+            (ngModelChange)="searchBooks(key.value)"
+            #key="ngModel"
+            ngModel
+            name="key"
+            id="searchName"
+            class="form-control mr-sm-2"
+            placeholder="Search books.."
+            required
+          />
         </form>
       </div>
     </div>

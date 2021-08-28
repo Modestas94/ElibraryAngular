@@ -1,8 +1,44 @@
-
-<div *ngFor="let book of books">
+<!-- <div *ngFor="let book of books">
 <div>{{book.name}}</div>
 <div>{{book.author}}</div>
 <div>{{book.category}}</div>
 <div>{{book.status}}</div>
-<br> <br>
+<br> <br> -->
+
+<div class="container" id="main-container">
+  <div class="row">
+    <div *ngFor="let book of books" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>{{ book?.name }}</h5>
+            <p class="m-0">{{ book?.author }}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa fa-envelope float-right"></i>{{ book?.category }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone float-right"></i> {{ book?.status }}
+          </li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <button type="button" class="btn btn-success">Take</button>
+
+            <button type="button" class="btn btn-danger">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification for no Books -->
+  <div *ngIf="books?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">No Books!</h4>
+      <p>No Books were found.</p>
+    </div>
+  </div>
 </div>

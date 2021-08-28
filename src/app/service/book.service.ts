@@ -27,7 +27,7 @@ public updateBook(book: Book): Observable<Book> {
 }
 
 public deleteBook(bookId: number): Observable<void> {
-  return this.http.delete<void>(`${this.apiServerUrl}/delete/${bookId}`)
+  return this.http.delete<void>(`${this.apiServerUrl}/${bookId}`)
 }
 
 public getBookByCategoryName(category: String): Observable<Book[]> {

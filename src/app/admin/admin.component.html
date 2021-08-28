@@ -1,0 +1,292 @@
+<!-- <div *ngFor="let book of books">
+<div>{{book.name}}</div>
+<div>{{book.author}}</div>
+<div>{{book.category}}</div>
+<div>{{book.status}}</div>
+<br> <br>  -->
+
+<button class="btn btn-lg btn-outline-primary" (click)="openAddModal(content)">
+  Create new book
+</button>
+
+<div class="container" id="main-container">
+  <div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Id</th>
+          <!-- <th>Paveiksliukas</th> -->
+          <th>Knygos Pavadinimas</th>
+          <th>Kategorija</th>
+          <th>Authorius</th>
+          <th>Statusas</th>
+          <th>Redaguoti</th>
+          <th>Ištrinti</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.id }}</td>
+            <!-- <td><img [src]="book.image" width="100px" height="100px" /></td> -->
+            <td>{{ book.name }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.status }}</td>
+            <td>
+              <a
+                (click)="openEditModal(updateBookModal, book)"
+                class="btn btn-primary tooltips"
+                data-placement="top"
+                data-original-title="Edit"
+                ><i class="fa fa-pencil"></i>
+              </a>
+            </td>
+
+            <td>
+              <a
+                (click)="openDeleteModal(deleteBookModal, book)"
+                class="btn btn-secondary tooltips"
+                data-placement="top"
+                data-original-title="Delete"
+                ><i class="fa fa-times"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ADD book modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="addBookModal">Put new book</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      #addForm="ngForm"
+      (ngSubmit)="onAddBook(addForm)"
+      ng-Controller="imageUrlChange"
+    >
+      <div class="form-group">
+        <label for="name">Book name</label>
+        <input
+          type="text"
+          ngModel
+          name="name"
+          class="form-control"
+          id="name"
+          placeholder="Name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Author">Author</label>
+        <input
+          type="text"
+          ngModel
+          name="author"
+          class="form-control"
+          id="author"
+          placeholder="Author"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Category">category</label>
+        <input
+          type="text"
+          ngModel
+          name="category"
+          class="form-control"
+          id="category"
+          placeholder="Category"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Status">Status</label>
+        <input
+          type="text"
+          ngModel
+          name="status"
+          class="form-control"
+          id="status"
+          placeholder="Status"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="">Image URL</label>
+        <input
+          type="text"
+          ngModel
+          name="imageUrl"
+          class="form-control"
+          id="imageUrl"
+          placeholder="Image URL"
+          required
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.dismiss('Close click')"
+        >
+          Close
+        </button>
+        <button
+          [disabled]="addForm.invalid"
+          type="submit"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Save click')"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Edit Modal -->
+<ng-template #updateBookModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="updateBookModal">Edit book</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #editForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          ngModel="{{ editBook.name }}"
+          name="name"
+          class="form-control"
+          id="name"
+          placeholder="Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          ngModel="{{ editBook.author }}"
+          name="author"
+          class="form-control"
+          id="author"
+          placeholder="Author"
+        />
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input
+          type="text"
+          ngModel="{{ editBook.category }}"
+          name="category"
+          class="form-control"
+          id="category"
+          placeholder="Category"
+        />
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <input
+          type="text"
+          ngModel="{{ editBook.status }}"
+          name="status"
+          class="form-control"
+          id="status"
+          placeholder="Book Status"
+        />
+      </div>
+      <!-- <div class="form-group" style="display: none">
+                                <label for="image">Image url</label>
+                                <input
+                                  type="text"
+                                  ngModel="{{ editBook?.image }}"
+                                  name="image"
+                                  class="form-control"
+                                  id="image"
+                                  placeholder="Image"
+                                />
+                              </div> -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="modal.dismiss('Close click')"
+        >
+          Close
+        </button>
+        <button
+          type="submit"
+          class="btn btn-outline-dark"
+          (click)="onUpdateBook(editForm.value)"
+          (click)="modal.close('Save click')"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Delete Modal -->
+<ng-template #deleteBookModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="deleteBookModal">Istrinti preke</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Ar tikrai norite ištrinti prekę - {{ deleteBook?.name}}?</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.dismiss('Close click')"
+    >
+      Uždaryti
+    </button>
+    <button
+      type="submit"
+      class="btn btn-outline-dark"
+      (click)="onDeleteBook(deleteBook.id)"
+      (click)="modal.close('Save click')"
+    >
+      Išsaugoti
+    </button>
+  </div>
+</ng-template>
+
+<!-- Notification for no books -->
+<div *ngIf="books?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert" style="text-align: center">
+    <h4 class="alert-heading">No books!</h4>
+    <p>Book not found.</p>
+  </div>
+</div>
