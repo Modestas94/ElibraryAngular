@@ -16,7 +16,6 @@ import { AdminModule } from './admin/admin.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +37,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([]),
     NgbModule,
+   
 
 
   ],

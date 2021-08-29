@@ -21,24 +21,7 @@ export class HeaderComponent implements OnInit {
       .then(() => this.router.navigate([`/category/${targetCategory}`]));
   }
 
-  public searchBooks(key: string): void {
-    console.log(key);
-    const results: Book[] = [];
-    for (const Book of this.books) {
-      if (
-        Book.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        Book.author.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        Book.category.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        Book.status.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      ) {
-        results.push(Book);
-      }
-    }
-    this.books = results;
-    if (results.length === 0 || !key) {
-      this.getBooks();
-    }
-  }
+  
   public getBooks(): void {
     this.bookService.getBooks().subscribe(
       (response: Book[]) => {

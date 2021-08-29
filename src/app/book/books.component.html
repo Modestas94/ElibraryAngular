@@ -5,9 +5,24 @@
 <div>{{book.status}}</div>
 <br> <br> -->
 
+<!-- Search book -->
+<form class="float-right form-inline my-2 my-lg-0 fas fa-search">
+  <input
+    type="search"
+    (ngModelChange)="searchBooks(key.value)"
+    #key="ngModel"
+    ngModel
+    name="key"
+    id="searchName"
+    class="form-control mr-sm-2"
+    placeholder="Search books..."
+    required
+  />
+</form>
+
 <div class="container" id="main-container">
   <div class="row">
-    <div *ngFor="let book of books" class="col-md-6 col-xl-3">
+    <div *ngFor="let book of booksFiltered" class="col-md-6 col-xl-4">
       <div class="card m-b-30">
         <div class="card-body row">
           <div class="col-6 card-title align-self-center mb-0">
@@ -34,11 +49,11 @@
     </div>
   </div>
 
-  <!-- Notification for no Books -->
-  <div *ngIf="books?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-    <div class="alert alert-info" role="alert">
-      <h4 class="alert-heading">No Books!</h4>
-      <p>No Books were found.</p>
-    </div>
+<!-- Notification for no books -->
+<div *ngIf="booksFiltered?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert" style="text-align: center">
+    <h4 class="alert-heading">No books!</h4>
+    <p>Book not found.</p>
   </div>
 </div>
+

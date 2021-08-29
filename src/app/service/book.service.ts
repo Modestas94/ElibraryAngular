@@ -23,7 +23,7 @@ public addBook(book: Book): Observable<Book> {
 }
 
 public updateBook(book: Book): Observable<Book> {
-  return this.http.put<Book>(`${this.apiServerUrl}/update`, book);
+  return this.http.put<Book>(`${this.apiServerUrl}/update/`, book);
 }
 
 public deleteBook(bookId: number): Observable<void> {

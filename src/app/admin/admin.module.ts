@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { AdminComponent } from './admin.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 
 
@@ -10,12 +12,14 @@ import { AdminComponent } from './admin.component';
   imports: [
     FormsModule,
     CommonModule,
+    ScrollingModule,
     
   
   ],
 
   exports:[
-    AdminComponent
+    AdminComponent,
+
   ]
 })
 export class AdminModule { }

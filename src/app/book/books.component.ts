@@ -15,6 +15,8 @@ export class BooksComponent implements OnInit {
   public editBook: Book;
   public deleteBook: Book;
   public addBook: Book;
+  public booksFiltered: Book[];
+
   
  
   constructor(
@@ -37,6 +39,7 @@ export class BooksComponent implements OnInit {
     this.bookService.getBooks().subscribe(
       (response: Book[]) => {
         this.books = response;
+        this.booksFiltered = this.books
       },
       (error: HttpErrorResponse) => {
         alert;
@@ -91,4 +94,24 @@ export class BooksComponent implements OnInit {
       }
     );
   }
+  public searchBooks(key: string): void {
+    // console.log(key);
+    const results: Book[] = [];
+    for (const Book of this.books) {
+      if (
+        Book.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        Book.author.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        Book.category.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        Book.status.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      ) {
+        results.push(Book);
+      }
+    }
+    if ( !key) {
+      this.booksFiltered = this.books;
+    } else {
+      this.booksFiltered = results;
+    }
+  }
 }
+

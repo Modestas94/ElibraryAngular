@@ -50,19 +50,7 @@
               <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/admin']">Admin</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            type="search"
-            (ngModelChange)="searchBooks(key.value)"
-            #key="ngModel"
-            ngModel
-            name="key"
-            id="searchName"
-            class="form-control mr-sm-2"
-            placeholder="Search books.."
-            required
-          />
-        </form>
+        
       </div>
     </div>
   </nav>
